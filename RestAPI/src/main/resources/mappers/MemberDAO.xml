@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.api.repository.MemberRepository">
+	<resultMap type="com.example.api.dto.MemberDto" id="member">
+		<result column="id" property="id"/>
+		<result column="user_id" property="userId"/>
+		<result column="user_pw" property="userPw"/>
+		<result column="user_nm" property="userNm"/>
+		<result column="user_age" property="userAge"/>
+	</resultMap>
+
+	<select id="getMember" resultMap="member">
+		SELECT * FROM member_info ORDER BY id ASC
+	</select>
+	
+</mapper>
+

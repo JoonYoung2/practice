@@ -1,13 +1,17 @@
-# My Batis
+
 spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521:xe
-    username: jobworld
+    username: sua_example
     password: 1234
     sql:
       init:
         encoding: UTF-8
+
+# My Batis
+mybatis:
+  mapper-locations: classpath:mappers/**/*.xml
 
 # Server
 server:
