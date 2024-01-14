@@ -14,4 +14,20 @@ public class MemberService {
     public List<MemberDto> getMember() {
         return memberRepository.getMember();
     }
+
+    public MemberDto saveMember(MemberDto memberDtoRequest) {
+        memberRepository.saveMember(memberDtoRequest);
+        MemberDto memberDtoResponse = memberRepository.getMemberByMaxId();
+        return memberDtoResponse;
+    }
+
+    public void deleteMemberById(Long id){
+        memberRepository.deleteMemberById(id);
+    }
+
+    public MemberDto updateMember(MemberDto memberDtoRequest){
+        memberRepository.updateMember(memberDtoRequest);
+        MemberDto memberDtoResponse = memberRepository.getMemberById(memberDtoRequest.getId());
+        return memberDtoResponse;
+    }
 }

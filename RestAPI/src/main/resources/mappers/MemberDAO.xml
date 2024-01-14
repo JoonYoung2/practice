@@ -14,6 +14,30 @@
 	<select id="getMember" resultMap="member">
 		SELECT * FROM member_info ORDER BY id ASC
 	</select>
-	
+
+	<insert id="saveMember" parameterType="com.example.api.dto.MemberDto">
+		<selectKey keyProperty="id" resultType="Long" order="BEFORE">
+			SELECT nvl(max(id), 0)+1 FROM member_info
+		</selectKey>
+		INSERT INTO member_info(id, user_id, user_pw, user_nm, user_age)
+		VALUES(#{id}, #{userId}, #{userPw}, #{userNm}, #{userAge})
+	</insert>
+
+	<select id="getMemberByMaxId" resultMap="member">
+		SELECT * FROM member_info WHERE id=(SELECT max(id) FROM member_info)
+	</select>
+
+	<update id="updateMember" parameterType="com.example.api.dto.MemberDto">
+		UPDATE member_info SET user_id=#{userId}, user_pw=#{userPw}, user_nm=#{userNm}, user_age=#{userAge}
+		WHERE id=#{id}
+	</update>
+
+	<delete id="deleteMemberById" parameterType="Long">
+		DELETE FROM member_info WHERE id=#{id}
+	</delete>
+
+	<select id="getMemberById" resultMap="member">
+		SELECT * FROM member_info WHERE id=#{id}
+	</select>
 </mapper>
 
